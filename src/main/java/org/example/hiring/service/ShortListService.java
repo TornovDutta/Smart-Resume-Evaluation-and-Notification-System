@@ -1,7 +1,8 @@
 package org.example.hiring.service;
 
-import org.example.resumeshortlist.DAO.ResumeRepo;
-import org.example.resumeshortlist.model.Resume;
+import org.example.hiring.DAO.ResumeRepo;
+import org.example.hiring.model.Resume;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
