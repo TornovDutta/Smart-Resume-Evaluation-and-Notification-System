@@ -1,0 +1,23 @@
+package org.example.hiring.controller;
+
+import org.example.hiring.model.Resume;
+import org.example.hiring.service.ShortListService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("hire")
+public class ShortListController {
+    @Autowired
+    private ShortListService service;
+    @GetMapping("checkAll")
+    public ResponseEntity<List<Resume>> getAll(){
+        return service.getAll();
+    }
+}
