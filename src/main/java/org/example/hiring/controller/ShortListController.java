@@ -5,9 +5,7 @@ import org.example.hiring.service.ShortListService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,9 @@ public class ShortListController {
     @GetMapping("checkAll")
     public ResponseEntity<List<Resume>> getAll(){
         return service.getAll();
+    }
+    @PostMapping("resume/{name}")
+    public ResponseEntity<Resume> getResume(@PathVariable String name){
+        return service.getResume(name);
     }
 }
