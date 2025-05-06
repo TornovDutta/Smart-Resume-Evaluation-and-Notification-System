@@ -9,15 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resume {
+public class JobSheeker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fileid;
+    private Integer id;
 
-    private String filename;
-    private String filetype;
-    @Lob
-    private byte[] filedata;
+    private String name;
+    private String email;
+    private Double ats;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id", referencedColumnName = "fileid")
+    private Resume resume;
 }

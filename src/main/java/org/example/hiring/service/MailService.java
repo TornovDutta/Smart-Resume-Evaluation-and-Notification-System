@@ -1,7 +1,9 @@
 package org.example.hiring.service;
 
-import org.example.hiring.DAO.ResumeRepo;
-import org.example.hiring.model.Resume;
+
+import org.example.hiring.DAO.JobSheekerRepo;
+
+import org.example.hiring.model.JobSheeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,18 +22,18 @@ public class MailService {
     private JavaMailSender sender;
 
     @Autowired
-    private ResumeRepo repo;
+    private JobSheekerRepo repo;
 
     @Transactional
     public ResponseEntity<String> send(int num) {
         long rows = repo.count();
 
         if (rows >= num) {
-            List<Resume> resumes = repo.findTopNResumesByAtsScore(num);
+            List<JobSheeker> jobSeekers = repo.findTopNJobSeekersByAts(num);
 
-            for (Resume resume : resumes) {
-                String toEmail = resume.getEmail();
-                String name = resume.getName();
+            for (JobSheeker jobSeeker : jobSeekers) {
+                String toEmail = jobSeeker.getEmail();
+                String name = jobSeeker.getName();
 
                 try {
                     SimpleMailMessage msg = new SimpleMailMessage();
@@ -42,7 +44,7 @@ public class MailService {
 
                     sender.send(msg);
                 } catch (Exception e) {
-                    // You can log this exception for better tracking
+                    // Log this exception for better tracking
                     return new ResponseEntity<>("Failed to send email to: " + toEmail, HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
@@ -51,15 +53,14 @@ public class MailService {
         } else {
             return new ResponseEntity<>("Not enough candidates in the database", HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<String> sendOfferToCandidateByName(String name) {
-        Resume resume = repo.findByName(name);
+        JobSheeker jobSeeker = repo.findByName(name);
 
-        if (resume != null) {
-            String toEmail = resume.getEmail();
-            String toName = resume.getName();
+        if (jobSeeker != null) {
+            String toEmail = jobSeeker.getEmail();
+            String toName = jobSeeker.getName();
 
             try {
                 SimpleMailMessage msg = new SimpleMailMessage();
@@ -71,7 +72,6 @@ public class MailService {
                 sender.send(msg);
                 return new ResponseEntity<>("Email sent to " + toName, HttpStatus.OK);
             } catch (Exception e) {
-                // Log this exception for better tracking
                 return new ResponseEntity<>("Failed to send email to: " + toEmail, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
