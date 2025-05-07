@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fileid;
+    private Integer fileid;
 
     private String filename;
     private String filetype;

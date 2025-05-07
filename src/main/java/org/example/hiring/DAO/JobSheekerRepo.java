@@ -4,9 +4,10 @@ import org.example.hiring.model.JobSheeker;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface JobSheekerRepo extends JpaRepository<JobSheeker, Integer> {
     JobSheeker findByName(String name);
 
