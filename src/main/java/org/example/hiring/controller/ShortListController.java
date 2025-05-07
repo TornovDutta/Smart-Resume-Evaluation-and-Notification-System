@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("hire")
@@ -20,7 +21,7 @@ public class ShortListController {
         return service.getAll();
     }
     @PostMapping("resume/{name}")
-    public ResponseEntity<JobSheeker> getResume(@PathVariable String name){
+    public ResponseEntity<Optional<Resume>> getResume(@PathVariable String name){
         return service.getResume(name);
     }
 }

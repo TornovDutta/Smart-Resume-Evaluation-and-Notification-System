@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShortListService {
@@ -30,11 +31,13 @@ public class ShortListService {
     }
 
 
-    public ResponseEntity<JobSheeker> getResume(String name) {
+    public ResponseEntity<Optional<Resume>> getResume(String name) {
 
         JobSheeker jobSheeker = jobSheekerRepo.findByName(name);
         if (jobSheeker != null) {
-            return new ResponseEntity<>(jobSheeker, HttpStatus.OK);
+            int id=jobSheeker.getId();
+            Optional<Resume> resume=resumeRepo.findById(id);
+            return new ResponseEntity<>(resume, HttpStatus.OK);
         } else {
 
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
