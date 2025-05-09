@@ -19,8 +19,8 @@ public class MailController {
     public ResponseEntity<String> sendMail(@PathVariable int num) {
         return service.send(num);
     }
-    @PostMapping("send/{name}")
-    public ResponseEntity<String> sendMail(@PathVariable String  name) {
+    @PostMapping("sendby/{name}")
+    public ResponseEntity<String> send(@PathVariable String  name) {
         return service.sendOfferToCandidateByName(name);
     }
 }

@@ -31,12 +31,13 @@ public class ShortListService {
     }
 
 
-    public ResponseEntity<Optional<Resume>> getResume(String name) {
+    public ResponseEntity<Resume> getResume(String name) {
 
         JobSheeker jobSheeker = jobSheekerRepo.findByName(name);
+
         if (jobSheeker != null) {
-            int id=jobSheeker.getId();
-            Optional<Resume> resume=resumeRepo.findById(id);
+            Resume resume=jobSheeker.getResume();
+
             return new ResponseEntity<>(resume, HttpStatus.OK);
         } else {
 

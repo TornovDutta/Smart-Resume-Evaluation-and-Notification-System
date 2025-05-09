@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,5 +21,13 @@ public class Resume {
     @Lob
     private byte[] filedata;
 
-
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "fileid=" + fileid +
+                ", filename='" + filename + '\'' +
+                ", filetype='" + filetype + '\'' +
+                ", filedata=" + Arrays.toString(filedata) +
+                '}';
+    }
 }

@@ -44,7 +44,6 @@ public class ResumeService {
             resume.setFiledata(file.getBytes());
 
             double ats = atsscore(file);
-            System.out.println(ats);
 
             JobSheeker jobSheeker = new JobSheeker();
             jobSheeker.setName(name);

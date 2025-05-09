@@ -1,6 +1,6 @@
 package org.example.hiring.controller;
 
-import org.example.hiring.model.JobSheeker;
+
 import org.example.hiring.model.Resume;
 import org.example.hiring.service.ShortListService;
 
@@ -20,8 +20,8 @@ public class ShortListController {
     public ResponseEntity<List<Resume>> getAll(){
         return service.getAll();
     }
-    @PostMapping("resume/{name}")
-    public ResponseEntity<Optional<Resume>> getResume(@PathVariable String name){
-        return service.getResume(name);
-    }
+//    @PostMapping("resume/{name}")
+//    public ResponseEntity<Resume> getResume(@PathVariable String name){
+//        return service.getResume(name);
+//    }
 }
