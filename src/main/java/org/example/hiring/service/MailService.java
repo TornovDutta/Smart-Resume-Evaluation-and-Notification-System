@@ -1,9 +1,9 @@
 package org.example.hiring.service;
 
 
-import org.example.hiring.DAO.JobSheekerRepo;
+import org.example.hiring.DAO.JobSeekerRepo;
 
-import org.example.hiring.model.JobSheeker;
+import org.example.hiring.model.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -24,16 +24,16 @@ public class MailService {
     private JavaMailSender sender;
 
     @Autowired
-    private JobSheekerRepo repo;
+    private JobSeekerRepo repo;
 
     @Transactional
     public ResponseEntity<String> send(int num) {
         long rows = repo.count();
 
         if (rows >= num) {
-            List<JobSheeker> jobSeekers = repo.findTopNJobSeekersByAts(num);
+            List<JobSeeker> jobSeekers = repo.findTopNJobSeekersByAts(num);
 
-            for (JobSheeker jobSeeker : jobSeekers) {
+            for (JobSeeker jobSeeker : jobSeekers) {
                 String toEmail = jobSeeker.getEmail();
                 String name = jobSeeker.getName();
 
@@ -59,7 +59,7 @@ public class MailService {
 
     @Transactional
     public ResponseEntity<String> sendOfferToCandidateByName(String name) {
-        JobSheeker jobSeeker = repo.findByName(name);
+        JobSeeker jobSeeker = repo.findByName(name);
         System.out.println(jobSeeker);
 
 

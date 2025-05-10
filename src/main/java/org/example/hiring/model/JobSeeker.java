@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobSheeker {
+public class JobSeeker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

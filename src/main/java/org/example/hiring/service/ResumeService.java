@@ -2,9 +2,9 @@ package org.example.hiring.service;
 
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
-import org.example.hiring.DAO.JobSheekerRepo;
+import org.example.hiring.DAO.JobSeekerRepo;
 import org.example.hiring.DAO.ResumeRepo;
-import org.example.hiring.model.JobSheeker;
+import org.example.hiring.model.JobSeeker;
 import org.example.hiring.model.Resume;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.ollama.OllamaChatModel;
@@ -24,7 +24,7 @@ public class ResumeService {
     private ResumeRepo resumeRepo;
 
     @Autowired
-    private JobSheekerRepo jobSheekerRepo;
+    private JobSeekerRepo jobSeekerRepo;
 
     private final ChatClient chatClient;
 
@@ -46,13 +46,13 @@ public class ResumeService {
             double ats = atsscore(file);
             System.out.println(ats);
 
-            JobSheeker jobSheeker = new JobSheeker();
-            jobSheeker.setName(name);
-            jobSheeker.setEmail(email);
-            jobSheeker.setResume(resume);
-            jobSheeker.setAts(ats);
+            JobSeeker jobSeeker = new JobSeeker();
+            jobSeeker.setName(name);
+            jobSeeker.setEmail(email);
+            jobSeeker.setResume(resume);
+            jobSeeker.setAts(ats);
 
-            jobSheekerRepo.save(jobSheeker);
+            jobSeekerRepo.save(jobSeeker);
 
             return new ResponseEntity<>("Thank you " + name + " for submitting your resume", HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -97,9 +97,9 @@ public class ResumeService {
     @Transactional
     public ResponseEntity<String> delete(String name) {
         try {
-            JobSheeker jobSheeker = jobSheekerRepo.findByName(name);
-            if (jobSheeker != null) {
-                jobSheekerRepo.deleteById(jobSheeker.getId());
+            JobSeeker jobSeeker = jobSeekerRepo.findByName(name);
+            if (jobSeeker != null) {
+                jobSeekerRepo.deleteById(jobSeeker.getId());
                 return new ResponseEntity<>(name + "'s resume deleted", HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<>("Sorry, resume for " + name + " not found", HttpStatus.OK);
