@@ -45,13 +45,26 @@ The ATS score is generated using the Ollama LLaMA 3.2 1B model.
 
 ---
 
+
+
 ## ⚙️ Running the Project
 
-1. Clone the repository.
-2. Set up your database and email credentials in the application's property files.
-3. Start the Ollama `llama3.2:1b` model locally.
-4. Run the Spring Boot application using your preferred IDE or terminal.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/TornovDutta/Hiring.git
+   cd Hiring
 
+2. Set up your database and email credentials in the application's property files.
+3. Start the Ollama `llama3.2:1b` model locally. 
+```bash 
+  ollama run llama3.2:1b
+```
+
+
+4. Run the Spring Boot application using your preferred IDE or terminal.
+````bash
+    mvn spring-boot:run
+````
 ---
 
 ## 🔐 Authentication
