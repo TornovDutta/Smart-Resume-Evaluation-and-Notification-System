@@ -5,6 +5,7 @@ import org.example.hiring.DAO.JobSheekerRepo;
 
 import org.example.hiring.model.JobSheeker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,7 +17,8 @@ import java.util.List;
 
 @Service
 public class MailService {
-    private static final String FROM = "tornovdutta@gmail.com";
+    @Value("${email.from}")
+    private String from;
 
     @Autowired
     private JavaMailSender sender;
@@ -38,7 +40,7 @@ public class MailService {
                 try {
                     SimpleMailMessage msg = new SimpleMailMessage();
                     msg.setTo(toEmail);
-                    msg.setFrom(FROM);
+                    msg.setFrom(from);
                     msg.setSubject("Offer Letter");
                     msg.setText("Dear " + name + ",\n\nCongratulations! You have been selected.");
 
@@ -66,7 +68,7 @@ public class MailService {
         try {
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setTo(toEmail);
-            msg.setFrom(FROM);
+            msg.setFrom(from);
             msg.setSubject("Offer Letter");
             msg.setText("Dear " + name + ",\n\nCongratulations! You have been selected.");
 
