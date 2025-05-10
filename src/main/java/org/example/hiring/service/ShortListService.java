@@ -21,6 +21,7 @@ public class ShortListService {
     @Autowired
     private ResumeRepo resumeRepo;
 
+
     public ResponseEntity<List<Resume>> getAll() {
         try {
             List<Resume> resumes = resumeRepo.findAll();
@@ -42,6 +43,15 @@ public class ShortListService {
         } else {
 
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<List<JobSheeker>> getAllJobsheeker() {
+        try {
+            List<JobSheeker> jobSheekers = jobSheekerRepo.findAll();
+            return new ResponseEntity<>(jobSheekers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -57,8 +57,10 @@ public class MailService {
         }
     }
 
+    @Transactional
     public ResponseEntity<String> sendOfferToCandidateByName(String name) {
         JobSheeker jobSeeker = repo.findByName(name);
+        System.out.println(jobSeeker);
 
 
         String toEmail = jobSeeker.getEmail();
