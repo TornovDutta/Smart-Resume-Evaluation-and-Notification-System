@@ -30,7 +30,8 @@ class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/jobsheeker/submit","/jobsheeker/delete","/jobsheeker/update").permitAll()
+                        .requestMatchers("/jobsheeker/submit","/jobsheeker/delete","/jobsheeker/update",
+                                "/recruiter/add").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
