@@ -17,15 +17,15 @@ public class ShortListController {
     @Autowired
     private ShortListService service;
     @GetMapping("checkAll")
-    public ResponseEntity<List<Resume>> getAll(){
+    public ResponseEntity<List<JobSeeker>> getAll(){
         return service.getAll();
     }
     @GetMapping("checkAllJobsheeker")
     public ResponseEntity<List<JobSeeker>> getAllJobSheeker(){
         return service.getAllJobsheeker();
     }
-//    @PostMapping("resume/{name}")
-//    public ResponseEntity<Resume> getResume(@PathVariable String name){
-//        return service.getResume(name);
-//    }
+    @PostMapping("resume/{name}")
+    public ResponseEntity<Resume> getResume(@PathVariable String name){
+        return service.getResume(name);
+    }
 }

@@ -1,5 +1,6 @@
 package org.example.hiring.service;
 
+import jakarta.transaction.Transactional;
 import org.example.hiring.DAO.JobSeekerRepo;
 import org.example.hiring.DAO.ResumeRepo;
 import org.example.hiring.model.Resume;
@@ -21,16 +22,16 @@ public class ShortListService {
     private ResumeRepo resumeRepo;
 
 
-    public ResponseEntity<List<Resume>> getAll() {
+    public ResponseEntity<List<JobSeeker>> getAll() {
         try {
-            List<Resume> resumes = resumeRepo.findAll();
-            return new ResponseEntity<>(resumes, HttpStatus.OK);
+            List<JobSeeker> jobSeekers = jobSeekerRepo.findAll();
+            return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-
+    @Transactional
     public ResponseEntity<Resume> getResume(String name) {
 
         JobSeeker jobSeeker = jobSeekerRepo.findByName(name);
