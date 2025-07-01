@@ -22,8 +22,9 @@ public class ResumerSubmitController {
                                          @RequestParam MultipartFile file) {
         return resumeService.submit(name, email, file);
     }
-    @DeleteMapping("delete/{name}")
-    public ResponseEntity<String> delete(@PathVariable String name){
-        return resumeService.delete(name);
+    @DeleteMapping("delete/{nam}")
+    public ResponseEntity<String> delete(@PathVariable String nam){
+        System.out.println("delete the information of "+nam);
+        return resumeService.delete(nam);
     }
 }
