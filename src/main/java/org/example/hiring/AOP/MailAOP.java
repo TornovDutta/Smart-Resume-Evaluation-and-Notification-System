@@ -1,6 +1,6 @@
 package org.example.hiring.AOP;
 
-import org.aopalliance.intercept.Joinpoint;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailAOP {
     @After("execution(* org.example.hiring.service.*.*(..))")
-    public void AfterMail(Joinpoint joinpoint){
-        System.out.println("the mail is forware "+joinpoint.getSignature().getName());
+    public void AfterMail(JoinPoint joinPoint){
+        System.out.println("the mail is forware "+joinPoint.getSignature().getName());
     }
 }
