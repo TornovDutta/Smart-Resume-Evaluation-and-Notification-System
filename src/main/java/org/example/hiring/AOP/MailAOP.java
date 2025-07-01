@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class MailAOP {
     @After("execution(* org.example.hiring.service.*.*(..))")
     public void AfterMail(JoinPoint joinPoint){
-        System.out.println("the mail is forware "+joinPoint.getSignature().getName());
+        System.out.println("the mail is forwared "+joinPoint.getSignature().getName());
     }
 }
