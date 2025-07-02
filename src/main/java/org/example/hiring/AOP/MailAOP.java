@@ -5,11 +5,15 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Logger;
+
+
 @Aspect
 @Component
 public class MailAOP {
+    private static final Logger log=Logger.getLogger(MailAOP.class.getName());
     @After("execution(* org.example.hiring.service.*.*(..))")
     public void AfterMail(JoinPoint joinPoint){
-        System.out.println("the mail is forwared "+joinPoint.getSignature().getName());
+        log.info("After Mail");
     }
 }
