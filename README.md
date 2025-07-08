@@ -108,6 +108,4 @@ Recruiters can send selection or rejection emails automatically to job seekers b
 
 ---
 
-## 📜 License
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for details.
