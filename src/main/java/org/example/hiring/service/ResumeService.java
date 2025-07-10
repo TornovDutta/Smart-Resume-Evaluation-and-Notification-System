@@ -7,7 +7,7 @@ import org.example.hiring.DAO.ResumeRepo;
 import org.example.hiring.model.JobSeeker;
 import org.example.hiring.model.Resume;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.ollama.OllamaChatModel;
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class ResumeService {
 
     private final ChatClient chatClient;
 
-    public ResumeService(OllamaChatModel chatModel) {
+    public ResumeService(OpenAiChatModel chatModel) {
         this.chatClient = ChatClient.builder(chatModel).build();
     }
 
