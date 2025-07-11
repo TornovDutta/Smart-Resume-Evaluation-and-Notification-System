@@ -21,4 +21,8 @@ public class RecruiterController {
     public ResponseEntity<List<Recruiter>> viewAll(){
         return service.view();
     }
+    @DeleteMapping("delete")
+    public ResponseEntity<String> deleteAll(){
+        return service.delete();
+    }
 }
