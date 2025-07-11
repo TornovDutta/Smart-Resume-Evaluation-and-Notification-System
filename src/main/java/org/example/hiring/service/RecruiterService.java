@@ -1,9 +1,11 @@
 package org.example.hiring.service;
 
 
+import jakarta.transaction.Transactional;
 import org.example.hiring.DAO.JobSeekerRepo;
 import org.example.hiring.DAO.RecruiterRepo;
 import org.example.hiring.DAO.ResumeRepo;
+import org.example.hiring.model.JobSeeker;
 import org.example.hiring.model.Recruiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,13 +37,19 @@ public class RecruiterService {
         return  new ResponseEntity<>(repo.findAll(),HttpStatus.OK);
     }
 
+    @Transactional
     public ResponseEntity<String> delete() {
-        try{
-            resume.deleteAll();
-            jobSeeker.deleteAll();
-            return new ResponseEntity<>("Delete all data",HttpStatus.OK);
+        try {
+
+            if (jobSeeker != null) {
+                jobSeeker.deleteAll();
+                return new ResponseEntity<>("Delete all data ",HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Table is Empty", HttpStatus.OK);
+            }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return new ResponseEntity<>("Error occurred while deleting resume", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
