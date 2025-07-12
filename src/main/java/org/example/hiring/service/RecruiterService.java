@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import org.example.hiring.DAO.JobSeekerRepo;
 import org.example.hiring.DAO.RecruiterRepo;
 import org.example.hiring.DAO.ResumeRepo;
-import org.example.hiring.model.JobSeeker;
 import org.example.hiring.model.Recruiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
